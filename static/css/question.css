@@ -1,0 +1,16 @@
+.question-box-main {
+    border: 0;
+}
+
+textarea[name=answer-form] {
+    width: 100%;
+}
+
+button[name=answer-question] {
+    margin-top: 5px;
+    margin-left: 0;
+}
+
+.answer-list {
+    list-style: none;
+}

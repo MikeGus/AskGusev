@@ -1,0 +1,20 @@
+.question-form div{
+    margin-top: 5px;
+}
+
+.ask-title {
+    width: 100%;
+}
+
+.ask-text {
+    width: 100%;
+}
+
+.ask-tags {
+    width: 100%;
+}
+
+button[name=ask-question] {
+    margin-top: 5px;
+    margin-left: -2px;
+}

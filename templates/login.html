@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+      <meta charset="utf-8">
+
+      <title>Log in</title>
+
+      <!-- Bootstrap core CSS -->
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="../static/css/base.css" rel="stylesheet">
+
+      <link href="../static/css/login.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><img class="logo" src="../static/img/logo.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav search-group">
+            <li><input type="text" class="form-control"  placeholder="Search" ></li>
+            <li><button type="button" class="btn btn-success search-btn">Ask!</button></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Log in</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="col-md-9">
+
+            <h1>Log In</h1>
+            <div class="alert alert-danger">
+              <strong>Warning!</strong> Incorrect login or password!
+            </div>
+
+            <div class="container question-form" style="width: 100%">
+                <div class="row">
+                    <div class="col-md-2">
+                        Login
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="login"> <span style="color:red"> incorrect data!</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        Password
+                    </div>
+                    <div class="col-md-10">
+                        <input type="password" class="password">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <button type="button" style="margin-left:0; margin-top: 10px" class="btn btn-basic search-btn" name=login>Log in!</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <a style="margin-top: 10px" href="#">create new account</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+          <h1>Popular tags</h1>
+
+          <ul class="container-fluid tags">
+              <li class="tags-list"><a style="color: red" href="#">perl</a></li>
+              <li class="tags-list"><a style="color: blue" href="#">python</a></li>
+              <li class="tags-list"><a style="color: orange" href="#">TechnoPark</a></li>
+              <li class="tags-list"><a style="color: cyan" href="#">MySQL</a></li>
+              <li class="tags-list"><a style="color: grey" href="#">django</a></li>
+              <li class="tags-list"><a style="color: violet" href="#">Mail.ru</a></li>
+              <li class="tags-list"><a style="color: green" href="#">Voloshin</a></li>
+              <li class="tags-list"><a style="color: orange" href="#">Firefox</a></li>
+          </ul>
+          <h1>Best members</h1>
+          <p>
+          <ul class="member-list">
+            <li><a href="#">Vincent Vega</a></li>
+            <li><a href="#">Robert Kelso</a></li>
+            <li><a href="#">Ryan Gosling</a></li>
+            <li><a href="#">Michael Douglas</a></li>
+            <li><a href="#">Pavel Durov</a></li>
+          </ul>
+          </p>
+        </div>
+    </div>
+      <!-- Main component for a primary marketing message or call to action -->
+    <!-- /container -->
+
+  </body>
+
+  <footer>
+      <div class="jumbotron footer"><strong>Mikhail Gusev, 2016</strong></div>
+  </footer>
+
+</html>

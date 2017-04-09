@@ -1,0 +1,82 @@
+body {
+  padding-top: 70px;
+}
+
+.logo {
+    margin-top: -15px;
+    width: 50px;
+}
+
+.avatar {
+    height: 45px;
+    width: 45px;
+    float: right;
+    margin-right: -25px;
+}
+
+.profile-navbar {
+    list-style: none;
+    cursor: hand;
+}
+
+.profile-navbar a {
+    padding-right: 5px;
+    color: #777;
+    line-height: 20px;
+    position: relative;
+    text-decoration: none;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+
+.profile-navbar a:hover {
+    color: #000;
+}
+
+.search-btn {
+    margin-left: 5px;
+}
+
+.search-group {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.search-group input {
+    #width: 500px;
+}
+
+.member-list {
+    list-style: none;
+}
+
+.member-list li {
+    font-size: 130%;
+    margin-left: -35px;
+}
+
+.tags {
+    margin-left: -10px;
+    list-style: none;
+    display: inline;
+}
+
+.tags-list {
+    display: inline;
+    font-size: 130%;
+}
+
+.tags-list a {
+    margin-right: 5px;
+    font-size:130%;
+    display: inline;
+}
+
+.footer strong {
+    float: right;
+    margin-right: 20%;
+}
+
+.footer {
+    margin: 10px;
+}

@@ -1,0 +1,83 @@
+.questions-container {
+    width: 100%;
+}
+
+.question-box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.question-box img {
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.question-header {
+    font-size: 25px;
+}
+
+.question-data {
+    padding-left: 40px;
+}
+
+.question-tags a {
+    margin-left: 5px;
+}
+
+.question-tags {
+    display: inline;
+    list-style: none;
+    margin-left: -35px;
+}
+
+.question-tags li {
+    display: inline;
+}
+
+.input-xs {
+    height: 22px;
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1.5; /* If Placeholder of the input is moved up, rem/modify this. */
+    border-radius: 3px;
+}
+
+in-group {
+    padding-left:30px;
+}
+
+#rep {
+    display: inline;
+    width: 10px;
+    font-size: 10px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.rep-data {
+    display: inline;
+}
+
+.rep-btn {
+    display: inline;
+}
+
+.rep-btn li {
+    list-style: none;
+    display: inline;
+}
+
+.rep-btn a {
+    display: inline;
+}
