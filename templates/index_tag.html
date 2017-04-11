@@ -1,201 +1,140 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-      <meta charset="utf-8">
+{% extends "base.html" %}
 
-      <title>AskGusev-tag</title>
+{% load static %}
 
-      <!-- Bootstrap core CSS -->
-      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+{% block title %}
+<title>Tag</title>
+{% endblock title %}
 
-      <!-- Custom styles for this template -->
-      <link href="../static/css/base.css" rel="stylesheet">
-      <link href="../static/css/index.css" rel="stylesheet">
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static "/css/index.css" %}">
+{% endblock stylesheet %}
 
-  </head>
 
-  <body>
+{% block content %}
+    <div class="col-md-9">
+        <h1 style="display:inline">Tag: bender</h1>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img class="logo" src="../static/img/logo.png"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav search-group">
-            <li><input type="text" class="form-control"  placeholder="Search" ></li>
-            <li><button type="button" class="btn btn-success search-btn">Ask!</button></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><img class="avatar" src="../static/img/def_avatar.png" alt="avatar"></li>
-            <li> <ul class="profile-navbar">
-                <li>John Doe</li>
-                <li><a href="#">Settings</a> <a href="#">Log out</a></li>
-            </ul> </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        <div class="container questions-container">
+            <div class="container question-box">
 
-    <div class="container">
+                <div class="col-md-2">
+                    <img src="../static/img/def_avatar.png" alt="avatar">
 
-        <div class="col-md-9">
-            <h1 style="display:inline">Tag: bender</h1>
-
-            <div class="container questions-container">
-                <div class="container question-box">
-
-                    <div class="col-md-2">
-                        <img src="../static/img/def_avatar.png" alt="avatar">
-
-                        <div class="input-group in-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-xs btn-success">
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </button>
-                            </span>
-                            <input type="text" class="form-control input-xs" value="10" readonly/>
-                            <span class="input-group-btn in-group">
-                                <button class="btn btn-xs btn-danger in-group">
-                                    <i class="glyphicon glyphicon-minus"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-10 question-data">
-                        <a class="question-header" href="#">Your favourite Guy Ritchie quote?</a>
-                        <p>Right. Let's sort the buyers from the spyers, the needy from the greedy, and those who trust me from the ones who don't, because if you can't see value here today, you're not up here shopping. You're up here shoplifting. You see these goods? Never seen daylight, moonlight, Israelite. Fanny by the gaslight. Take a bag, c'mon take a bag. I took a bag home last night. Cost me a lot more than ten pound, I can tell you. Anyone like jewelry? Look at that one there. Handmade in Italy, hand-stolen ...</p>
-
-                        <a href="#">Answers (3)</a>
-                        <span style="margin-left: 15px">Tags:</span>
-                        <ul class="question-tags">
-                            <li><a href="#">black-jack</a></li>
-                            <li><a href="#">bender</a></li>
-                        </ul>
-
+                    <div class="input-group in-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-xs btn-success">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </button>
+                        </span>
+                        <!--<input type="text" class="form-control input-xs" value="10" readonly/>-->
+                        <span id="rating">10</span>
+                        <span class="input-group-btn in-group">
+                            <button class="btn btn-xs btn-danger in-group">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </button>
+                        </span>
                     </div>
                 </div>
-            </div>
 
-            <div class="container questions-container">
-                <div class="container question-box">
+                <div class="col-md-10 question-data">
+                    <a class="question-header" href="#">Your favourite Guy Ritchie quote?</a>
+                    <p>Right. Let's sort the buyers from the spyers, the needy from the greedy, and those who trust me from the ones who don't, because if you can't see value here today, you're not up here shopping. You're up here shoplifting. You see these goods? Never seen daylight, moonlight, Israelite. Fanny by the gaslight. Take a bag, c'mon take a bag. I took a bag home last night. Cost me a lot more than ten pound, I can tell you. Anyone like jewelry? Look at that one there. Handmade in Italy, hand-stolen ...</p>
 
-                    <div class="col-md-2">
-                        <img src="../static/img/def_avatar.png" alt="avatar">
+                    <a href="#">Answers (3)</a>
+                    <span style="margin-left: 15px">Tags:</span>
+                    <ul class="question-tags">
+                        <li><a href="#">black-jack</a></li>
+                        <li><a href="#">bender</a></li>
+                    </ul>
 
-                        <div class="input-group in-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-xs btn-success">
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </button>
-                            </span>
-                            <input type="text" class="form-control input-xs" value="10" readonly/>
-                            <span class="input-group-btn in-group">
-                                <button class="btn btn-xs btn-danger in-group">
-                                    <i class="glyphicon glyphicon-minus"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-10 question-data">
-                        <a class="question-header" href="#">Your favourite Guy Ritchie quote?</a>
-                        <p>Right. Let's sort the buyers from the spyers, the needy from the greedy, and those who trust me from the ones who don't, because if you can't see value here today, you're not up here shopping. You're up here shoplifting. You see these goods? Never seen daylight, moonlight, Israelite. Fanny by the gaslight. Take a bag, c'mon take a bag. I took a bag home last night. Cost me a lot more than ten pound, I can tell you. Anyone like jewelry? Look at that one there. Handmade in Italy, hand-stolen ...</p>
-
-                        <a href="#">Answers (3)</a>
-                        <span style="margin-left: 15px">Tags:</span>
-                        <ul class="question-tags">
-                            <li><a href="#">black-jack</a></li>
-                            <li><a href="#">bender</a></li>
-                        </ul>
-
-                    </div>
                 </div>
-            </div>
-
-            <div class="container questions-container">
-                <div class="container question-box">
-
-                    <div class="col-md-2">
-                        <img src="../static/img/def_avatar.png" alt="avatar">
-
-                        <div class="input-group in-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-xs btn-success">
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </button>
-                            </span>
-                            <input type="text" class="form-control input-xs" value="10" readonly/>
-                            <span class="input-group-btn in-group">
-                                <button class="btn btn-xs btn-danger in-group">
-                                    <i class="glyphicon glyphicon-minus"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-10 question-data">
-                        <a class="question-header" href="#">Your favourite Guy Ritchie quote?</a>
-                        <p>Right. Let's sort the buyers from the spyers, the needy from the greedy, and those who trust me from the ones who don't, because if you can't see value here today, you're not up here shopping. You're up here shoplifting. You see these goods? Never seen daylight, moonlight, Israelite. Fanny by the gaslight. Take a bag, c'mon take a bag. I took a bag home last night. Cost me a lot more than ten pound, I can tell you. Anyone like jewelry? Look at that one there. Handmade in Italy, hand-stolen ...</p>
-
-                        <a href="#">Answers (3)</a>
-                        <span style="margin-left: 15px">Tags:</span>
-                        <ul class="question-tags">
-                            <li><a href="#">black-jack</a></li>
-                            <li><a href="#">bender</a></li>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <ul class="pagination">
-                    <li><a class="pagination" href="#"> << </a></li>
-                    <li><a class="pagination" href="#">1</a></li>
-                    <li><a class="pagination" href="#">2</a></li>
-                    <li><a class="pagination" href="#">..</a></li>
-                    <li><a class="pagination" href="#">6</a></li>
-                    <li><a class="pagination" href="#"> >> </a></li>
-                </ul>
-
-
             </div>
         </div>
 
-        <div class="col-md-3">
-          <h1>Popular tags</h1>
+        <div class="container questions-container">
+            <div class="container question-box">
 
-          <ul class="container-fluid tags">
-              <li class="tags-list"><a style="color: red" href="#">perl</a></li>
-              <li class="tags-list"><a style="color: blue" href="#">python</a></li>
-              <li class="tags-list"><a style="color: orange" href="#">TechnoPark</a></li>
-              <li class="tags-list"><a style="color: cyan" href="#">MySQL</a></li>
-              <li class="tags-list"><a style="color: grey" href="#">django</a></li>
-              <li class="tags-list"><a style="color: violet" href="#">Mail.ru</a></li>
-              <li class="tags-list"><a style="color: green" href="#">Voloshin</a></li>
-              <li class="tags-list"><a style="color: orange" href="#">Firefox</a></li>
-          </ul>
-          <h1>Best members</h1>
-          <p>
-          <ul class="member-list">
-            <li><a href="#">Vincent Vega</a></li>
-            <li><a href="#">Robert Kelso</a></li>
-            <li><a href="#">Ryan Gosling</a></li>
-            <li><a href="#">Michael Douglas</a></li>
-            <li><a href="#">Pavel Durov</a></li>
-          </ul>
-          </p>
+                <div class="col-md-2">
+                    <img src="../static/img/def_avatar.png" alt="avatar">
+
+                    <div class="input-group in-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-xs btn-success">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </button>
+                        </span>
+                        <input type="text" class="form-control input-xs" value="10" readonly/>
+                        <span class="input-group-btn in-group">
+                            <button class="btn btn-xs btn-danger in-group">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-10 question-data">
+                    <a class="question-header" href="#">Your favourite Guy Ritchie quote?</a>
+                    <p>Right. Let's sort the buyers from the spyers, the needy from the greedy, and those who trust me from the ones who don't, because if you can't see value here today, you're not up here shopping. You're up here shoplifting. You see these goods? Never seen daylight, moonlight, Israelite. Fanny by the gaslight. Take a bag, c'mon take a bag. I took a bag home last night. Cost me a lot more than ten pound, I can tell you. Anyone like jewelry? Look at that one there. Handmade in Italy, hand-stolen ...</p>
+
+                    <a href="#">Answers (3)</a>
+                    <span style="margin-left: 15px">Tags:</span>
+                    <ul class="question-tags">
+                        <li><a href="#">black-jack</a></li>
+                        <li><a href="#">bender</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container questions-container">
+            <div class="container question-box">
+
+                <div class="col-md-2">
+                    <img src="../static/img/def_avatar.png" alt="avatar">
+
+                    <div class="input-group in-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-xs btn-success">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </button>
+                        </span>
+                        <input type="text" class="form-control input-xs" value="10" readonly/>
+                        <span class="input-group-btn in-group">
+                            <button class="btn btn-xs btn-danger in-group">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-10 question-data">
+                    <a class="question-header" href="#">Your favourite Guy Ritchie quote?</a>
+                    <p>Right. Let's sort the buyers from the spyers, the needy from the greedy, and those who trust me from the ones who don't, because if you can't see value here today, you're not up here shopping. You're up here shoplifting. You see these goods? Never seen daylight, moonlight, Israelite. Fanny by the gaslight. Take a bag, c'mon take a bag. I took a bag home last night. Cost me a lot more than ten pound, I can tell you. Anyone like jewelry? Look at that one there. Handmade in Italy, hand-stolen ...</p>
+
+                    <a href="#">Answers (3)</a>
+                    <span style="margin-left: 15px">Tags:</span>
+                    <ul class="question-tags">
+                        <li><a href="#">black-jack</a></li>
+                        <li><a href="#">bender</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <ul class="pagination">
+                <li><a class="pagination" href="#"> << </a></li>
+                <li><a class="pagination" href="#">1</a></li>
+                <li><a class="pagination" href="#">2</a></li>
+                <li><a class="pagination" href="#">..</a></li>
+                <li><a class="pagination" href="#">6</a></li>
+                <li><a class="pagination" href="#"> >> </a></li>
+            </ul>
+
+
         </div>
     </div>
-      <!-- Main component for a primary marketing message or call to action -->
-    <!-- /container -->
-
-  </body>
-
-  <footer>
-      <div class="jumbotron footer"><strong>Mikhail Gusev, 2016</strong></div>
-  </footer>
-</html>
+{% endblock content %}

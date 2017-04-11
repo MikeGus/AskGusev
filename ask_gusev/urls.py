@@ -16,8 +16,21 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from views import BaseView
+from views import IndexView
+from views import IndexTagView
+from views import LoginView
+
 urlpatterns = [
     url(r'question/', include('questions.urls')),
 
     url(r'^admin/', admin.site.urls),
+
+    url(r'^base', BaseView.as_view(), name='base'),
+
+    url(r'^tag/blablabla', IndexTagView.as_view(), name='tag'),
+
+    url(r'^login', LoginView.as_view(), name="login"),
+
+    url(r'^', IndexView.as_view(), name='index')
 ]

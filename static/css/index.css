@@ -81,3 +81,8 @@ in-group {
 .rep-btn a {
     display: inline;
 }
+
+#rating {
+    width: 20;
+    color: red;
+}
