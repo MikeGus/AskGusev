@@ -20,17 +20,29 @@ from views import BaseView
 from views import IndexView
 from views import IndexTagView
 from views import LoginView
+from views import QuestionView
+from views import SettingsView
+from views import SignUpView
+from views import AskView
 
 urlpatterns = [
     url(r'question/', include('questions.urls')),
 
     url(r'^admin/', admin.site.urls),
 
-    url(r'^base', BaseView.as_view(), name='base'),
+    url(r'^base$', BaseView.as_view(), name='base'),
 
-    url(r'^tag/blablabla', IndexTagView.as_view(), name='tag'),
+    url(r'^tag/blablabla$', IndexTagView.as_view(), name='tag'),
 
-    url(r'^login', LoginView.as_view(), name="login"),
+    url(r'^login$', LoginView.as_view(), name="login"),
 
-    url(r'^', IndexView.as_view(), name='index')
+    url(r'^question/35$', QuestionView.as_view(), name="question"),
+
+    url(r'^settings$', SettingsView.as_view(), name="settings"),
+
+    url(r'^signup$', SignUpView.as_view(), name="signup"),
+
+    url(r'^ask$', AskView.as_view(), name="ask"),
+
+    url(r'^$', IndexView.as_view(), name='index')
 ]
