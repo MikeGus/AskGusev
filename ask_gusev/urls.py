@@ -26,8 +26,6 @@ from views import SignUpView
 from views import AskView
 
 urlpatterns = [
-    url(r'question/', include('questions.urls')),
-
     url(r'^admin/', admin.site.urls),
 
     url(r'^base$', BaseView.as_view(), name='base'),
