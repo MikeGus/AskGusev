@@ -33,5 +33,5 @@ urlpatterns = [
 
     url(r'^ask/?', views.ask, name="ask"),
 
-    url(r'^/?', views.index, name='index')
+    url(r'^$', views.index, name='index')
 ]

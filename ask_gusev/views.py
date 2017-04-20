@@ -5,7 +5,12 @@ from collections import namedtuple
 
 
 def pagination(request, object_list):
-    if (object_list.per_page * object_list.page) > len(object_list.questions):
+
+    max_page = len(object_list.questions) // object_list.per_page
+    if len(object_list.questions) % object_list.per_page != 0:
+        max_page += 1
+
+    if object_list.page > max_page:
         current_page = 1
         if object_list.per_page > len(object_list.questions):
             questions_to_render = object_list.questions
@@ -18,9 +23,8 @@ def pagination(request, object_list):
     next_page = current_page + 1
     prev_page = current_page - 1
 
-    max_page = len(object_list.questions) // object_list.per_page
-    if len(object_list.questions) % object_list.per_page != 0:
-        max_page += 1
+
+
     prev_max_page = max_page - 1
     prev_prev_max_page = prev_max_page - 1
 
@@ -36,7 +40,7 @@ def pagination(request, object_list):
 
 def index(request):
     questions = []
-    for i in xrange(1, 120):
+    for i in xrange(1, 122):
         questions.append({
             "title" : "title "  + str(i),
             "id" : i,
@@ -44,10 +48,17 @@ def index(request):
             "tags" : {"bender", "frei"},
             "rating" : i,
         })
-
     object_list = namedtuple('pagination_data', ['per_page', 'page', 'questions', 'template'])
     object_list.per_page = 10
-    object_list.page = 5
+
+    page = request.GET.get('page')
+    if page is None or not page.isdigit():
+        page = 1
+    else:
+        page = int(page)
+
+    object_list.page = page
+
     object_list.questions = questions
     object_list.template = "index.html"
 
