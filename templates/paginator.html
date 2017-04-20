@@ -1,0 +1,32 @@
+<ul class="pagination" style = "margin-left: 15px">
+    <li><a class="pagination" href="../{{ prev_page }}" > << </a></li>
+    <li><a class="pagination" href="../1">1</a></li>
+    {% if max_page != 1 %}
+        <li><a class="pagination" href="../2">2</a></li>
+        {% if current_page > 3 %}
+            <li><a class="pagination" >..</a></li>
+            {% if current_page > 4 %}
+                <li><a class="pagination" href="../{{ prev_page }}" > {{ prev_page }}</a></li>
+            {% endif %}
+        {% endif %}
+
+        <li><a class="pagination" href="../{{ current_page }}" > {{ current_page }}</a></li>
+
+        {% if current_page != max_page %}
+            <li><a class="pagination" href="../{{ next_page }}" > {{ next_page }}</a></li>
+        {% endif %}
+
+        {% if prev_prev_max_page > next_page %}
+            <li><a class="pagination" >..</a></li>
+        {% endif %}
+
+        {% if prev_max_page > next_page %}
+            <li><a class="pagination" href="../{{ prev_max_page }}">{{ prev_max_page }}</a></li>
+        {% endif %}
+
+        {% if max_page > next_page %}
+            <li><a class="pagination" href="../{{ max_page }}">{{ max_page }}</a></li>
+        {% endif %}
+    {% endif %}
+    <li><a class="pagination" href="../{{ next_page }}"> >> </a></li>
+</ul>

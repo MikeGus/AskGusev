@@ -25,7 +25,7 @@ urlpatterns = [
 
     url(r'^tag/blablabla$', views.index, name='tag'),
 
-    url(r'^question/?', views.question, name="question"),
+    url(r'^question/35/', views.question, name="question"),
 
     url(r'^settings/?', views.settings, name="settings"),
 
@@ -33,5 +33,5 @@ urlpatterns = [
 
     url(r'^ask/?', views.ask, name="ask"),
 
-    url(r'^$', views.index, name='index')
+    url(r'^/?', views.index, name='index')
 ]

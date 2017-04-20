@@ -1,13 +1,15 @@
-<div class="container questions-container">
-    <div class="container question-box">
-        <div class="col-md-2">
-            <img src="../static/img/def_avatar.png" alt="avatar">
-            {% include "rating_btn.html" %}
-        </div>
+<div class="container question-box">
+    <div class="col-md-3">
+        <ul style = "list-style: none; margin-left: -50px;">
+            <li><img style="width: 100px" src="../static/img/def_avatar.png" alt="avatar"></li>
+            <li style = "margin-left: 15px">{% include "rating_btn.html" %}</li>
+        </ul>
+    </div>
 
-        <div class="col-md-10 question-data">
-            <a class="question-header" href="#"> {{ question.title }}</a>
-            <p> {{ question.text }} </p>
+    <div class="col-md-9 question-data">
+        <a class="question-header" href="#"> {{ question.title }}</a>
+        <p> {{ question.text }} </p>
+        <span style = "margin-bottom: 120px">
             <a href="#">Answers (3)</a>
             <span style="margin-left: 15px">Tags:</span>
             <ul class="question-tags">
@@ -15,7 +17,8 @@
                     <li><a href="#"> {{ tag }} </a></li>
                 {% endfor %}
             </ul>
+        </span>
 
-        </div>
+
     </div>
 </div>

@@ -16,20 +16,11 @@
         <h1 style="display:inline">New Questions</h1>
         <a href="#" style="margin-left:10px">Hot Questions</a>
 
-        {% for question in questions %}
-            {% include "single_question.html" %}
-        {% endfor %}
-        <div>
-            <ul class="pagination">
-                <li><a class="pagination" href="#"> << </a></li>
-                <li><a class="pagination" href="#">1</a></li>
-                <li><a class="pagination" href="#">2</a></li>
-                <li><a class="pagination" href="#">..</a></li>
-                <li><a class="pagination" href="#">6</a></li>
-                <li><a class="pagination" href="#"> >> </a></li>
-            </ul>
-
-
+        <div class = "container questions-container">
+            {% for question in questions %}
+                {% include "single_question.html" %}
+            {% endfor %}
         </div>
+        {% include "paginator.html" %}
     </div>
 {% endblock content %}
