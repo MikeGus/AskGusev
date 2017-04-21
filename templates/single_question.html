@@ -1,7 +1,9 @@
+{% load static %}
+
 <div class="container question-box">
     <div class="col-md-3">
         <ul style = "list-style: none; margin-left: -50px;">
-            <li><img style="width: 100px" src="../static/img/def_avatar.png" alt="avatar"></li>
+            <li><img style="width: 100px" src="{% static "/img/def_avatar.png" %}" alt="avatar"></li>
             <li style = "margin-left: 15px">{% include "rating_btn.html" %}</li>
         </ul>
     </div>
@@ -14,7 +16,7 @@
             <span style="margin-left: 15px">Tags:</span>
             <ul class="question-tags">
                 {% for tag in question.tags %}
-                    <li><a href="#"> {{ tag }} </a></li>
+                    <li><a href="/tag/{{tag}}"> {{ tag }} </a></li>
                 {% endfor %}
             </ul>
         </span>

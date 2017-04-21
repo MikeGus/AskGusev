@@ -34,20 +34,24 @@ def pagination(request, object_list):
         next_page = current_page
     context = {'questions' : questions_to_render, 'current_page' : current_page,
                'next_page' : next_page, 'prev_page' : prev_page, 'max_page' : max_page,
-               'prev_max_page' : prev_max_page, 'prev_prev_max_page' : prev_prev_max_page}
+               'prev_max_page' : prev_max_page, 'prev_prev_max_page' : prev_prev_max_page,
+               'tag' : object_list.tag, 'hot' : object_list.hot}
     return render(request, object_list.template, context)
 
 
-def index(request):
+def index(request, tag_id=None, hot=False):
+
     questions = []
     for i in xrange(1, 122):
         questions.append({
-            "title" : "title "  + str(i),
-            "id" : i,
-            "text" : "text " + str(i),
-            "tags" : {"bender", "frei"},
-            "rating" : i,
+            "title": "title " + str(i),
+            "id": i,
+            "text": "text " + str(i),
+            "tags": ["bender", "frei"],
+            "rating": i,
+            "hot" : i % 2
         })
+
     object_list = namedtuple('pagination_data', ['per_page', 'page', 'questions', 'template'])
     object_list.per_page = 10
 
@@ -58,9 +62,23 @@ def index(request):
         page = int(page)
 
     object_list.page = page
-
-    object_list.questions = questions
     object_list.template = "index.html"
+
+    object_list.tag = tag_id
+    object_list.questions = []
+    object_list.hot = hot
+
+    if object_list.tag is None:
+        if not hot:
+            object_list.questions = questions
+        else:
+            for q in questions:
+                if q['hot'] == 1:
+                    object_list.questions.append(q)
+    else:
+        for q in questions:
+            if object_list.tag in q['tags']:
+                object_list.questions.append(q)
 
     return pagination(request, object_list)
 

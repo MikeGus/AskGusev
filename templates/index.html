@@ -13,8 +13,17 @@
 
 {% block content %}
     <div class="col-md-9">
-        <h1 style="display:inline">New Questions</h1>
-        <a href="#" style="margin-left:10px">Hot Questions</a>
+        {% if hot %}
+            <h1 style="display:inline">Hot Questions</h1>
+            <a href="{% url 'index' %}" style="margin-left:10px">New Questions</a>
+        {% else %}
+            {% if tag is None %}
+                <h1 style="display:inline">New Questions</h1>
+                <a href="{% url 'hot' %}" style="margin-left:10px">Hot Questions</a>
+            {% else %}
+                <h1 style="display:inline">Tag: {{ tag }} </h1>
+            {% endif %}
+        {% endif %}
 
         <div class = "container questions-container">
             {% for question in questions %}
