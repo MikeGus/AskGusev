@@ -27,5 +27,8 @@ urlpatterns = [
     url(r'^settings/?', views.settings, name="settings"),
     url(r'^signup/?', views.signup, name="signup"),
     url(r'^ask/?', views.ask, name="ask"),
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.index, name='index'),
+
+    # url(r'^tag/(?P<tag_id>[a-z]+)/$', views.tag, name="tag"),
+    # url(r'^hot/$', views.hot, {'hot':True}, name="hot"),
 ]

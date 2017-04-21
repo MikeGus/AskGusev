@@ -2,35 +2,34 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from collections import namedtuple
+import models
 
 
-def pagination(request, object_list):
+def pagination(request, object_list, per_page=10, page=1):
 
-    max_page = len(object_list.questions) // object_list.per_page
-    if len(object_list.questions) % object_list.per_page != 0:
+    max_page = len(object_list.questions) // per_page
+    if len(object_list.questions) % per_page != 0:
         max_page += 1
 
     if object_list.page > max_page:
         current_page = 1
-        if object_list.per_page > len(object_list.questions):
+        if per_page > len(object_list.questions):
             questions_to_render = object_list.questions
         else:
-            questions_to_render = object_list.questions[:object_list.per_page]
+            questions_to_render = object_list.questions[:per_page]
     else:
         current_page = object_list.page
-        questions_to_render = object_list.questions[object_list.per_page * (object_list.page - 1): object_list.per_page * (object_list.page)]
+        questions_to_render = object_list.questions[per_page * (object_list.page - 1): per_page * (object_list.page)]
 
     next_page = current_page + 1
     prev_page = current_page - 1
-
-
 
     prev_max_page = max_page - 1
     prev_prev_max_page = prev_max_page - 1
 
     if current_page == 1:
         prev_page = 1
-    if object_list.per_page * current_page >= len(object_list.questions):
+    if per_page * current_page >= len(object_list.questions):
         next_page = current_page
     context = {'questions' : questions_to_render, 'current_page' : current_page,
                'next_page' : next_page, 'prev_page' : prev_page, 'max_page' : max_page,
@@ -48,13 +47,11 @@ def index(request, tag_id=None, hot=False):
             "id": i,
             "text": "text " + str(i),
             "tags": ["bender", "frei"],
-            "rating": i,
-            "hot": i % 2,
+            "rating": i % 15,
             "answers": i % 5
         })
 
     object_list = namedtuple('pagination_data', ['per_page', 'page', 'questions', 'template'])
-    object_list.per_page = 10
 
     page = request.GET.get('page')
     if page is None or not page.isdigit():
@@ -74,14 +71,14 @@ def index(request, tag_id=None, hot=False):
             object_list.questions = questions
         else:
             for q in questions:
-                if q['hot'] == 1:
+                if q['rating'] > 8:
                     object_list.questions.append(q)
     else:
         for q in questions:
             if object_list.tag in q['tags']:
                 object_list.questions.append(q)
 
-    return pagination(request, object_list)
+    return pagination(request, object_list, page=page)
 
 
 def login(request):
@@ -121,3 +118,17 @@ def settings(request):
 
 def ask(request):
     return render(request, "ask.html")
+#
+#
+# def tag(request, tag):
+#     return pagination(request, {models.Question.objects.tag(tag), 1, False, "index.html"})
+#
+#
+# def hot(request):
+#
+#
+# def question(request, question_id):
+#     question = models.Question.objects.get(id=question_id)
+#     answers = question.get_answers()
+#
+#     return render(request, "question.html", {"object": question, "answers": answers})
