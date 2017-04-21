@@ -49,7 +49,8 @@ def index(request, tag_id=None, hot=False):
             "text": "text " + str(i),
             "tags": ["bender", "frei"],
             "rating": i,
-            "hot" : i % 2
+            "hot": i % 2,
+            "answers": i % 5
         })
 
     object_list = namedtuple('pagination_data', ['per_page', 'page', 'questions', 'template'])
@@ -91,8 +92,27 @@ def signup(request):
     return render(request, "signup.html")
 
 
-def question(request):
-    return render(request, "question.html")
+def question(request, question_id):
+
+    q = {
+            "title": "title " + str(question_id),
+            "id": question_id,
+            "text": "text " + str(question_id),
+            "tags": ["bender", "frei"],
+            "rating": question_id,
+            "hot" : int(question_id) % 2,
+            "answers": int(question_id) % 5
+        }
+    answers = []
+    for i in range (int(question_id) % 5):
+        answers.append({
+            "title": "answer " + str(i),
+            "id": i,
+            "text": "text " + str(i),
+            "rating": i,
+        })
+
+    return render(request, "question.html", {"object": q, "answers": answers})
 
 
 def settings(request):

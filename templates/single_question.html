@@ -2,24 +2,22 @@
 
 <div class="container question-box">
     <div class="col-md-3">
-        <ul style = "list-style: none; margin-left: -50px;">
+        <ul style = "list-style: none; margin-left: -50px; margin-bottom: 10px; margin-top: -5px"">
             <li><img style="width: 100px" src="{% static "/img/def_avatar.png" %}" alt="avatar"></li>
             <li style = "margin-left: 15px">{% include "rating_btn.html" %}</li>
         </ul>
     </div>
 
     <div class="col-md-9 question-data">
-        <a class="question-header" href="#"> {{ question.title }}</a>
-        <p> {{ question.text }} </p>
-        <span style = "margin-bottom: 120px">
-            <a href="#">Answers (3)</a>
-            <span style="margin-left: 15px">Tags:</span>
-            <ul class="question-tags">
-                {% for tag in question.tags %}
-                    <li><a href="/tag/{{tag}}"> {{ tag }} </a></li>
-                {% endfor %}
-            </ul>
-        </span>
+        <a class="question-header" href="/question/{{object.id}}"> {{ object.title }}</a>
+        <p> {{ object.text }} </p>
+        <a href="/question/{{object.id}}">Answers ({{ object.answers }})</a>
+        <span style="margin-left: 15px">Tags:</span>
+        <ul class="question-tags">
+            {% for tag in object.tags %}
+                <li><a href="/tag/{{tag}}"> {{ tag }} </a></li>
+            {% endfor %}
+        </ul>
 
 
     </div>
