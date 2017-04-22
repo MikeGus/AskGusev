@@ -5,7 +5,17 @@ from collections import namedtuple
 import models
 
 
-def pagination(request, object_list, per_page=10, page=1):
+def get_page(request):
+    page = request.GET.get('page')
+    if page is None or not page.isdigit():
+        page = 1
+    else:
+        page = int(page)
+
+    return page
+
+
+def pagination(request, object_list, per_page=1, page=1):
 
     max_page = len(object_list.questions) // per_page
     if len(object_list.questions) % per_page != 0:
@@ -38,43 +48,16 @@ def pagination(request, object_list, per_page=10, page=1):
     return render(request, object_list.template, context)
 
 
-def index(request, tag_id=None, hot=False):
-
-    questions = []
-    for i in xrange(1, 122):
-        questions.append({
-            "title": "title " + str(i),
-            "id": i,
-            "text": "text " + str(i),
-            "tags": ["bender", "frei"],
-            "rating": i % 15,
-            "answers": i % 5
-        })
+def index(request):
 
     object_list = namedtuple('hot', 'tag', 'questions', 'template')
 
-    page = request.GET.get('page')
-    if page is None or not page.isdigit():
-        page = 1
-    else:
-        page = int(page)
+    page = get_page(request)
 
+    object_list.questions = models.Question.objects.all()
     object_list.template = "index.html"
-    object_list.tag = tag_id
-    object_list.questions = []
-    object_list.hot = hot
-
-    if object_list.tag is None:
-        if not hot:
-            object_list.questions = questions
-        else:
-            for q in questions:
-                if q['rating'] > 8:
-                    object_list.questions.append(q)
-    else:
-        for q in questions:
-            if object_list.tag in q['tags']:
-                object_list.questions.append(q)
+    object_list.tag = None
+    object_list.hot = False
 
     return pagination(request, object_list, page=page)
 
