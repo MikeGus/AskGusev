@@ -18,10 +18,10 @@ class TagManager(models.Manager):
         return self.annotate(questions_count=Count('question'))
 
     def order_by_count(self):
-        return self.count_questions().order_by(-'questions_count')
+        return self.count_questions().order_by('-questions_count')
 
     def get_by_title(self, title):
-        return self.get(title='title')
+        return self.get(title=title)
 
     def get_or_create(self, title):
         try:
