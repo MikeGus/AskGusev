@@ -15,7 +15,8 @@ def get_page(request):
     return page
 
 
-def pagination(request, object_list, per_page=1, page=1):
+# STANDART DJANGO PAGINATOR
+def pagination(request, object_list, per_page=2, page=1):
 
     max_page = len(object_list.questions) // per_page
     if len(object_list.questions) % per_page != 0:
@@ -68,29 +69,6 @@ def login(request):
 
 def signup(request):
     return render(request, "signup.html")
-
-
-# def question(request, question_id):
-#
-#     q = {
-#             "title": "title " + str(question_id),
-#             "id": question_id,
-#             "text": "text " + str(question_id),
-#             "tags": ["bender", "frei"],
-#             "rating": question_id,
-#             "hot" : int(question_id) % 2,
-#             "answers": int(question_id) % 5
-#         }
-#     answers = []
-#     for i in range (int(question_id) % 5):
-#         answers.append({
-#             "title": "answer " + str(i),
-#             "id": i,
-#             "text": "text " + str(i),
-#             "rating": i,
-#         })
-#
-#     return render(request, "question.html", {"object": q, "answers": answers})
 
 
 def settings(request):
