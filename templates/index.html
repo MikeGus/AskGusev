@@ -12,24 +12,23 @@
 
 
 {% block content %}
-    <div class="col-md-9">
-        {% if hot %}
-            <h1 style="display:inline">Hot Questions</h1>
-            <a href="{% url 'index' %}" style="margin-left:10px">New Questions</a>
+    {% if hot %}
+        <h1 style="display:inline">Hot Questions</h1>
+        <a href="{% url 'index' %}" style="margin-left:10px">New Questions</a>
+    {% else %}
+        {% if tag is None %}
+            <h1 style="display:inline">New Questions</h1>
+            <a href="{% url 'hot' %}" style="margin-left:10px">Hot Questions</a>
         {% else %}
-            {% if tag is None %}
-                <h1 style="display:inline">New Questions</h1>
-                <a href="{% url 'hot' %}" style="margin-left:10px">Hot Questions</a>
-            {% else %}
-                <h1 style="display:inline">Tag: {{ tag }} </h1>
-            {% endif %}
+            <h1 style="display:inline">Tag: {{ tag.title }} </h1>
         {% endif %}
+    {% endif %}
 
-        <div class = "container questions-container">
-            {% for object in questions %}
-                {% include "single_question.html" %}
-            {% endfor %}
-        </div>
-        {% include "paginator.html" %}
+    <div style="width: 100%" class = "container questions-container">
+        {% for object in questions %}
+            {% include "single_question.html" %}
+        {% endfor %}
     </div>
+
+    {% include "paginator.html" %}
 {% endblock content %}

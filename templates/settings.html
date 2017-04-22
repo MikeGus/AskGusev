@@ -11,7 +11,7 @@
 {% endblock stylesheet %}
 
 {% block content %}
-<h1>Settings: John Doe</h1>
+<h1>Settings: {{ user.first_name }} {{ user.last_name }}</h1>
 <div class="alert alert-danger">
   <strong>Warning!</strong> You entered incorrect data!
 </div>
@@ -21,7 +21,7 @@
             Login
         </div>
         <div class="col-md-10">
-            <input type="text" class="settings-login" placeholder="johndoe">
+            <input type="text" class="settings-login" placeholder="{{ user.username }}">
         </div>
     </div>
 
@@ -30,7 +30,7 @@
             Email
         </div>
         <div class="col-md-10">
-            <input type="text" class="settings-email" placeholder="johndoe@mail.ru">
+            <input type="text" class="settings-email" placeholder="{{ user.email }}">
         </div>
     </div>
 
@@ -39,7 +39,7 @@
             Nickname
         </div>
         <div class="col-md-10">
-            <input type="text" class="settings-nickname" placeholder="John Doe">
+            <input type="text" class="settings-nickname" placeholder="{{ user.first_name }} {{ user.last_name }}">
         </div>
     </div>
 
@@ -48,7 +48,7 @@
             Upload avatar
         </div>
         <div class="col-md-10">
-            <img class="avatar-upload" src="{% static "/img/def_avatar.png" %}">
+            <img class="avatar-upload" src="{{ user.profile.avatar }}">
         </div>
     </div>
 

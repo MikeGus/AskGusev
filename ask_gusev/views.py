@@ -11,15 +11,15 @@ def pagination(request, object_list, per_page=10, page=1):
     if len(object_list.questions) % per_page != 0:
         max_page += 1
 
-    if object_list.page > max_page:
+    if page > max_page:
         current_page = 1
         if per_page > len(object_list.questions):
             questions_to_render = object_list.questions
         else:
             questions_to_render = object_list.questions[:per_page]
     else:
-        current_page = object_list.page
-        questions_to_render = object_list.questions[per_page * (object_list.page - 1): per_page * (object_list.page)]
+        current_page = page
+        questions_to_render = object_list.questions[per_page * (page - 1): per_page * (page)]
 
     next_page = current_page + 1
     prev_page = current_page - 1
@@ -51,7 +51,7 @@ def index(request, tag_id=None, hot=False):
             "answers": i % 5
         })
 
-    object_list = namedtuple('pagination_data', ['per_page', 'page', 'questions', 'template'])
+    object_list = namedtuple('hot', 'tag', 'questions', 'template')
 
     page = request.GET.get('page')
     if page is None or not page.isdigit():
@@ -59,9 +59,7 @@ def index(request, tag_id=None, hot=False):
     else:
         page = int(page)
 
-    object_list.page = page
     object_list.template = "index.html"
-
     object_list.tag = tag_id
     object_list.questions = []
     object_list.hot = hot
@@ -89,27 +87,27 @@ def signup(request):
     return render(request, "signup.html")
 
 
-def question(request, question_id):
-
-    q = {
-            "title": "title " + str(question_id),
-            "id": question_id,
-            "text": "text " + str(question_id),
-            "tags": ["bender", "frei"],
-            "rating": question_id,
-            "hot" : int(question_id) % 2,
-            "answers": int(question_id) % 5
-        }
-    answers = []
-    for i in range (int(question_id) % 5):
-        answers.append({
-            "title": "answer " + str(i),
-            "id": i,
-            "text": "text " + str(i),
-            "rating": i,
-        })
-
-    return render(request, "question.html", {"object": q, "answers": answers})
+# def question(request, question_id):
+#
+#     q = {
+#             "title": "title " + str(question_id),
+#             "id": question_id,
+#             "text": "text " + str(question_id),
+#             "tags": ["bender", "frei"],
+#             "rating": question_id,
+#             "hot" : int(question_id) % 2,
+#             "answers": int(question_id) % 5
+#         }
+#     answers = []
+#     for i in range (int(question_id) % 5):
+#         answers.append({
+#             "title": "answer " + str(i),
+#             "id": i,
+#             "text": "text " + str(i),
+#             "rating": i,
+#         })
+#
+#     return render(request, "question.html", {"object": q, "answers": answers})
 
 
 def settings(request):
@@ -118,17 +116,35 @@ def settings(request):
 
 def ask(request):
     return render(request, "ask.html")
-#
-#
-# def tag(request, tag):
-#     return pagination(request, {models.Question.objects.tag(tag), 1, False, "index.html"})
-#
-#
-# def hot(request):
-#
-#
-# def question(request, question_id):
-#     question = models.Question.objects.get(id=question_id)
-#     answers = question.get_answers()
-#
-#     return render(request, "question.html", {"object": question, "answers": answers})
+
+
+def tag(request, tag_title):
+    tag_id = models.Tag.objects.get_by_title(tag_title).id
+    object_list = namedtuple('hot', 'tag', 'questions', 'template')
+    object_list.hot = False
+    object_list.questions = models.Question.objects.tag(tag_id)
+    object_list.template = "index.html"
+    object_list.tag = tag_title
+    return pagination(request, object_list)
+
+
+def hot(request):
+    object_list = namedtuple('hot', 'tag', 'questions', 'template')
+    object_list.hot = True
+    object_list.tag = None
+    object_list.template = "index.html"
+    object_list.questions = models.Question.objects.hot()
+    page = request.GET.get('page')
+    if page is None or not page.isdigit():
+        page = 1
+    else:
+        page = int(page)
+
+    return pagination(request, object_list, page=page)
+
+
+def question(request, question_id):
+    question = models.Question.objects.get(id=question_id)
+    answers = question.get_answers()
+
+    return render(request, "question.html", {"object": question, "answers": answers})

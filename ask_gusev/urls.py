@@ -21,14 +21,14 @@ import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/?', views.login, name="login"),
-    url(r'^tag/(?P<tag_id>[a-z]+)/$', views.index, name="tag"),
-    url(r'^hot/$', views.index, {'hot':True}, name="hot"),
+    #url(r'^tag/(?P<tag_id>[a-z]+)/$', views.index, name="tag"),
+    #url(r'^hot/$', views.index, {'hot':True}, name="hot"),
     url(r'^question/(?P<question_id>[0-9]+)/$', views.question, name="question"),
     url(r'^settings/?', views.settings, name="settings"),
     url(r'^signup/?', views.signup, name="signup"),
     url(r'^ask/?', views.ask, name="ask"),
     url(r'^$', views.index, name='index'),
 
-    # url(r'^tag/(?P<tag_id>[a-z]+)/$', views.tag, name="tag"),
-    # url(r'^hot/$', views.hot, {'hot':True}, name="hot"),
+    url(r'^tag/(?P<tag_title>.+)/$', views.tag, name="tag"),
+    url(r'^hot/$', views.hot, name="hot"),
 ]

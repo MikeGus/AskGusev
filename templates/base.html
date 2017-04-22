@@ -43,10 +43,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><img class="avatar" src="{% static "/img/def_avatar.png" %}" alt="avatar"></li>
+                    <li><img class="avatar" src="{% static '/img/def_avatar.png' %}" alt="avatar"></li>
                     <li>
                         <ul class="profile-navbar">
-                            <li>John Doe</li>
+                            <li>{{ user.first_name }} {{ user.last_name }}</li>
                             <li><a href="{% url 'settings' %}">Settings</a> <a href="#">Log out</a></li>
                         </ul>
                     </li>

@@ -12,6 +12,10 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='uploads')
     info = models.TextField()
 
+    class Meta:
+        verbose_name = u'Профиль'
+        verbose_name_plural = u'Профили'
+
 
 class TagManager(models.Manager):
     def count_questions(self):
@@ -38,11 +42,20 @@ class TagManager(models.Manager):
 
 class Tag(models.Model):
     title = models.CharField(max_length = 15)
-
     objects = TagManager()
+
+    class Meta:
+        verbose_name = u'Тэг'
+        verbose_name_plural = u'Тэги'
 
     def get_url(self):
         return '/tag/' + self.title
+
+    def __str__(self):
+        return str(self.title)
+
+    def __unicode__(self):
+        return str(self.title)
 
 
 class QuestionManager(models.Manager):
@@ -68,40 +81,47 @@ class Question(models.Model):
     objects = QuestionManager()
 
     class Meta:
-        db_table = 'questions'
+        verbose_name = u'Вопрос'
+        verbose_name_plural = u'Вопросы'
         ordering = ['-date']
 
     def get_answers(self):
         return Answer.objects.filter(question_id=self.id)
 
+    def __str__(self):
+        return str(self.title)
 
-class QuestionLikeManager(models.Manager):
-
-    def calculate(self, question):
-        return self.filter(question=question).aggregate(sum=Sum('value'))['sum']
-
-    def update(self, author, question, value):
-        obj, new = self.update_or_create(
-            author=author,
-            question=question,
-            defaults={'value': value}
-        )
-
-        question.rating = self.calculate(question)
-        question.save()
-
-        return new
+    def __unicode__(self):
+        return str(self.title)
 
 
-class QuestionRating(models.Model):
-    PLUS = 1
-    MINUS = -1
-
-    question = models.ForeignKey(Question)
-    author = models.ForeignKey(User)
-    value = models.SmallIntegerField(default=1)
-
-    objects = QuestionLikeManager()
+# class QuestionRatingManager(models.Manager):
+#
+#     def calculate(self, question):
+#         return self.filter(question=question).aggregate(sum=Sum('value'))['sum']
+#
+#     def update(self, author, question, value):
+#         obj, new = self.update_or_create(
+#             author=author,
+#             question=question,
+#             defaults={'value': value}
+#         )
+#
+#         question.rating = self.calculate(question)
+#         question.save()
+#
+#         return new
+#
+#
+# class QuestionRating(models.Model):
+#     PLUS = 1
+#     MINUS = -1
+#
+#     question = models.ForeignKey(Question)
+#     author = models.ForeignKey(User)
+#     value = models.SmallIntegerField(default=1)
+#
+#     objects = QuestionLikeManager()
 
 
 class Answer(models.Model):
@@ -113,36 +133,37 @@ class Answer(models.Model):
     rating = models.IntegerField(default=0)
 
     class Meta:
-        db_table = 'answer'
+        verbose_name = u'Ответ'
+        verbose_name_plural = u'Ответы'
         ordering = ['-correct', 'date', '-rating']
 
     def get_url(self):
         return self.question.get_url()
 
 
-class AnswerRatingManager(models.Manager):
-    def calculate(self, answer):
-        return self.filter(answer=answer).aggregate(sum=Sum('value'))['sum']
-
-    def update(self, author, answer, value):
-        obj, new = self.update(
-            author=author,
-            answer=answer,
-            defaults={'value':value}
-        )
-
-        answer.rating = self.calculate(answer)
-        answer.save()
-
-        return new
-
-
-class AnswerRating(models.Model):
-    PLUS = 1
-    MINUS = -1
-
-    answer = models.ForeignKey(Answer)
-    author = models.ForeignKey(User)
-    value = models.SmallIntegerField(default=1)
-
-    objects = AnswerRatingManager()
+# class AnswerRatingManager(models.Manager):
+#     def calculate(self, answer):
+#         return self.filter(answer=answer).aggregate(sum=Sum('value'))['sum']
+#
+#     def update(self, author, answer, value):
+#         obj, new = self.update(
+#             author=author,
+#             answer=answer,
+#             defaults={'value':value}
+#         )
+#
+#         answer.rating = self.calculate(answer)
+#         answer.save()
+#
+#         return new
+#
+#
+# class AnswerRating(models.Model):
+#     PLUS = 1
+#     MINUS = -1
+#
+#     answer = models.ForeignKey(Answer)
+#     author = models.ForeignKey(User)
+#     value = models.SmallIntegerField(default=1)
+#
+#     objects = AnswerRatingManager()

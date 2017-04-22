@@ -22,6 +22,7 @@
         </ul>
     <hr>
 
-    <textarea rows = 10 class="ask-text" placeholder="Enter your answer here" name=answer-form></textarea>
-    <button type="button" class="btn btn-basic search-btn" name=answer-question>Ask!</button>
+    {% if user.is_authenticated and user.id != object.author_id %}
+        {% include "answer_form.html" %}
+    {% endif %}
 {% endblock content %}
